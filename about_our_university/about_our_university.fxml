@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="about_our_university.AboutUniversityController">
+
+    <AnchorPane prefHeight="41.0" prefWidth="900.0">
+        <children>
+            <Rectangle fill="#008743" height="41.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
+         <ImageView fitHeight="22.0" fitWidth="151.0" layoutX="14.0" layoutY="9.0">
+            <image>
+               <Image url="@../images/logo/olfu-logo-white.png" />
+            </image>
+         </ImageView>
+            <Button fx:id="dashboardButton" layoutX="677.0" layoutY="9.0" mnemonicParsing="false" 
+        prefHeight="22.0" prefWidth="126.0" 
+        style="-fx-background-color: #00ce63; -fx-text-fill: white; -fx-background-radius: 25px; -fx-font-weight: bold;" 
+        text="Dashboard" textFill="WHITE" onAction="#navigateToDashboard">
+    <font>
+        <Font size="9.0" />
+    </font>
+</Button>
+
+<ImageView fx:id="userProfileIcon" fitHeight="22.0" fitWidth="24.0" layoutX="849.0" layoutY="9.0" 
+           onMouseClicked="#navigateToProfile">
+    <image>
+        <Image url="@/images/icons/nav-user.png" />
+    </image>
+</ImageView>
+        </children>
+    </AnchorPane>
+
+    <!-- Scrollable Content (with No Horizontal Scroll) -->
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0" prefWidth="900.0">
+        <content>
+            <AnchorPane prefHeight="837.0" prefWidth="1037.0">
+                <children>
+                    <ImageView fitHeight="272.0" fitWidth="900.0">
+                        <image>
+                            <Image url="@learn-more.jpg" />
+                        </image>
+                    </ImageView>
+                    <ImageView fitHeight="154.0" fitWidth="300.0" layoutX="300.0" layoutY="78.0">
+                        <image>
+                            <Image url="@olfu-center-logo.png" />
+                        </image>
+                    </ImageView>
+                    <Text fill="#38793b" layoutX="87.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vision">
+                        <font>
+                            <Font name="Segoe UI Bold" size="15.0" />
+                        </font>
+                    </Text>
+                    <Text fill="#696666" layoutX="88.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A premier inclusive university of choice aspiring to improve man as man by developing individuals through a legacy of excellent education and compassionate value formation." wrappingWidth="737.3007202148438" />
+                    <Text fill="#38793b" layoutX="87.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mission">
+                        <font>
+                            <Font name="Segoe UI Bold" size="15.0" />
+                        </font>
+                    </Text>
+                    <Text fill="#696666" layoutX="88.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Our Lady of Fatima University, together with Fatima Medical Science Foundation, Inc., is dedicated to the improvement of man as man through the holistic formation of individuals imbued with knowledge, skills, and virtues." wrappingWidth="737.3007202148438" />
+               <Text fill="#38793b" layoutX="89.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLFU Core Values">
+                  <font>
+                     <Font name="Segoe UI Bold" size="15.0" />
+                  </font>
+               </Text>
+               <Text fill="#696666" layoutX="91.0" layoutY="526.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R    –    Respect" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="92.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I     –    Integrity" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="92.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S     –    Service" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="91.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E     –    Excellence" wrappingWidth="737.3007202148438" />
+               <Text fill="#38793b" layoutX="88.0" layoutY="617.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLFU Core Values">
+                  <font>
+                     <Font name="Segoe UI Bold" size="15.0" />
+                  </font>
+               </Text>
+               <Text fill="#696666" layoutX="92.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A    –    Aspirational" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="92.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C    –    Compassionate" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="92.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H    –    Honorable" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="95.0" layoutY="705.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I     –     Inspiring" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="95.0" layoutY="724.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E    –    Ethical" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="95.0" layoutY="743.0" strokeType="OUTSIDE" strokeWidth="0.0" text="V    –    Visionary" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="96.0" layoutY="761.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E    –    Efficient" wrappingWidth="737.3007202148438" />
+               <Text fill="#696666" layoutX="96.0" layoutY="780.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R    –    Responsible" wrappingWidth="737.3007202148438" />
+                    <!-- Horizontal Gray Line -->
+                    <Line endX="900.0" layoutY="801.0" startX="0.0" stroke="#c3c3c3" strokeWidth="1" />
+            
+                    <!-- Footer Section -->
+                    <AnchorPane layoutY="613.0" prefHeight="40.0" prefWidth="900.0" />
+                     <Label layoutX="272.0" layoutY="810.0" style="-fx-font-size: 12px; -fx-text-fill: gray;" text="© 2025 Our Lady of Fatima University. All Rights Reserved." textFill="#747373" />
+
+                </children>
+            </AnchorPane>
+        </content>
+    </ScrollPane>
+</VBox>

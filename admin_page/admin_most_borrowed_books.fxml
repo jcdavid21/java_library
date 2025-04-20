@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MostBorrowedBooksController">
+   <!-- Fixed Top Bar -->
+   <AnchorPane prefHeight="41.0" prefWidth="900.0">
+      <children>
+         <Rectangle fill="#008743" height="41.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
+         <ImageView fitHeight="22.0" fitWidth="151.0" layoutX="14.0" layoutY="9.0">
+            <image>
+               <Image url="@../images/logo/olfu-logo-white.png" />
+            </image>
+         </ImageView>
+         <Button fx:id="dashboardButton" layoutX="677.0" layoutY="9.0" mnemonicParsing="false" onAction="#navigateToDashboard" prefHeight="22.0" prefWidth="126.0" style="-fx-background-color: #00ce63; -fx-text-fill: white; -fx-background-radius: 25px; -fx-font-weight: bold;" text="Dashboard" textFill="WHITE">
+            <font>
+               <Font size="9.0" />
+            </font>
+         </Button>
+         <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="849.0" layoutY="9.0">
+            <image>
+               <Image url="@../images/icons/nav-user.png" />
+            </image>
+         </ImageView>
+      </children>
+   </AnchorPane>
+
+   <!-- Scrollable Content (with No Horizontal Scroll) -->
+   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="525.0" prefWidth="900.0">
+      <content>
+         <AnchorPane prefHeight="820.0" prefWidth="900.0">
+            <children>
+               <!-- Left Sidebar -->
+               <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#008743" height="29.0" layoutX="14.0" layoutY="461.0" stroke="#008743" strokeType="INSIDE" strokeWidth="0.0" width="187.0" />
+               <ImageView fitHeight="167.0" fitWidth="177.0" layoutX="14.0" layoutY="14.0">
+                  <image>
+                     <Image url="@olfu-logo-dashboard-png.png" />
+                  </image>
+               </ImageView>
+               
+               <!-- Sidebar Navigation -->
+               <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="15.0" layoutY="192.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/dashboard-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="48.0" layoutY="207.0" onMouseClicked="#navigateToDashboard" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <Text fill="#008743" layoutX="47.0" layoutY="241.0" onMouseClicked="#navigateToTotalBooks" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Books Available">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="15.0" layoutY="225.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-total-books-available.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="48.0" layoutY="270.0" onMouseClicked="#navigateToBookCategories" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Categories">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="16.0" layoutY="256.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-book-categories-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="15.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View &amp; Manage Books">
+                  <font>
+                     <Font name="Segoe UI Black" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="16.0" layoutY="315.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-add-new-books-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="48.0" layoutY="331.0" onMouseClicked="#navigateToAddNewBooks" strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Books">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="21.0" fitWidth="23.0" layoutX="14.0" layoutY="344.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-update-book-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="49.0" layoutY="357.0" onMouseClicked="#navigateToUpdateBookDetails" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Book Details">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="16.0" layoutY="373.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-remove-book-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="50.0" layoutY="386.0" onMouseClicked="#navigateToRemoveBooks" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove Books">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="16.0" layoutY="404.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-borrowed-books-green.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="15.0" layoutY="464.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-most-borrowed-books-white.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="50.0" layoutY="417.0" onMouseClicked="#navigateToBorrowedBooks" strokeType="OUTSIDE" strokeWidth="0.0" text="Borrowed Books">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="15.0" layoutY="433.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-reserved-books-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="51.0" layoutY="447.0" onMouseClicked="#navigateToReservedBooks" strokeType="OUTSIDE" strokeWidth="0.0" text="Reserved Books">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <Text fill="WHITE" layoutX="51.0" layoutY="479.0" onMouseClicked="#navigateToMostBorrowedBooks" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Borrowed Books">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <Text fill="#008743" layoutX="15.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Management">
+                  <font>
+                     <Font name="Segoe UI Black" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="521.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-view-students-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="53.0" layoutY="539.0" onMouseClicked="#navigateToViewStudents" strokeType="OUTSIDE" strokeWidth="0.0" text="View Students">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="13.0" layoutY="553.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-borrowing-history-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="53.0" layoutY="568.0" onMouseClicked="#navigateToBorrowingHistory" strokeType="OUTSIDE" strokeWidth="0.0" text="Borrowing History">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="11.0" layoutY="580.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-penalties-fines-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="53.0" layoutY="597.0" onMouseClicked="#navigateToPenaltiesAndFines" strokeType="OUTSIDE" strokeWidth="0.0" text="Penalties &amp; Fines">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <Text fill="#008743" layoutX="20.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Visits">
+                  <font>
+                     <Font name="Segoe UI Black" size="12.0" />
+                  </font>
+               </Text>
+               <Text fill="#008743" layoutX="59.0" layoutY="657.0" onMouseClicked="#navigateToLibraryVisitLogs" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Visit Logs ">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="24.0" fitWidth="27.0" layoutX="21.0" layoutY="640.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/library-visit-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="20.0" layoutY="688.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Settings">
+                  <font>
+                     <Font name="Segoe UI Black" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="19.0" layoutY="700.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-managed-admin-account-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="59.0" layoutY="717.0" onMouseClicked="#navigateToManageAdminAccounts" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Admin Accounts ">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="21.0" layoutY="735.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-system-logs-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="61.0" layoutY="750.0" onMouseClicked="#navigateToSystemLogs" strokeType="OUTSIDE" strokeWidth="0.0" text="System Logs ">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="21.0" layoutY="775.0">
+                  <image>
+                     <Image url="@../images/admin_dashboard/admin-logout-green.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="61.0" layoutY="790.0" onMouseClicked="#logout" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="12.0" />
+                  </font>
+               </Text>
+               
+               <!-- Main Content Area -->
+               <Rectangle fill="#e4e4e4" height="750.0" layoutX="207.0" opacity="0.38" stroke="#535353" strokeType="INSIDE" strokeWidth="0.0" width="677.0" />
+               
+               <!-- Page Title -->
+               <Text fill="#008743" layoutX="235.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Borrowed Books">
+                  <font>
+                     <Font name="Segoe UI Bold" size="24.0" />
+                  </font>
+               </Text>
+               
+               <!-- Refresh Button -->
+               <Button layoutX="770.0" layoutY="30.0" mnemonicParsing="false" onAction="#refreshData" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #008743; -fx-text-fill: white; -fx-background-radius: 5px;" text="Refresh Data">
+                  <font>
+                     <Font name="Segoe UI" size="12.0" />
+                  </font>
+               </Button>
+               
+               <!-- Most Borrowed Books Table -->
+               <TableView fx:id="mostBorrowedBooksTable" layoutX="235.0" layoutY="80.0" prefHeight="500.0" prefWidth="620.0">
+                 <columns>
+                   <TableColumn fx:id="bookIdColumn" prefWidth="75.0" text="Book ID" />
+                   <TableColumn fx:id="isbnColumn" prefWidth="150.0" text="ISBN" />
+                   <TableColumn fx:id="titleColumn" prefWidth="250.0" text="Book Title" />
+                   <TableColumn fx:id="borrowCountColumn" prefWidth="140.0" text="Times Borrowed" />
+                 </columns>
+               </TableView>
+               
+            </children>
+         </AnchorPane>
+      </content>
+   </ScrollPane>
+</VBox>

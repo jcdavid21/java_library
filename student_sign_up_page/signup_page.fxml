@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500" prefWidth="900" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="student_sign_up_page.LoginController">
+
+    <!-- Left Side with Green Background and Image -->
+    <Pane layoutX="-2.0" layoutY="-7.0" prefHeight="507.0" prefWidth="477.0" style="-fx-background-color: #ffff; -fx-border-radius: 10px;">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#248b4f" height="275.0" layoutX="240.0" layoutY="233.0" stroke="TRANSPARENT" strokeType="INSIDE" width="282.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#248b4f" height="200.0" layoutX="-6.0" layoutY="6.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+        <Circle fill="#248b4f" layoutX="251.0" layoutY="238.0" nodeOrientation="LEFT_TO_RIGHT" radius="271.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <ImageView fitHeight="167.0" fitWidth="329.0" layoutX="87.0" layoutY="95.0">
+            <image>
+                <Image url="@../images/logo/olfu-center-logo.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="welcomeLabel" layoutX="76.0" layoutY="273.0" prefWidth="350" style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-alignment: center;" text="Welcome to Our Lady of Fatima" textAlignment="CENTER" wrapText="true">
+            <font>
+                <Font name="Bauhaus 93" size="12.0" />
+            </font></Label>
+        <Label fx:id="descriptionLabel" layoutX="91.0" layoutY="315.0" prefHeight="38.0" prefWidth="319.0" style="-fx-text-fill: white; -fx-font-size: 13; -fx-alignment: center;" text="Easily borrow, reserve, and manage your book online" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#dbdbdb00" height="33.0" layoutX="133.0" layoutY="366.0" stroke="WHITE" strokeType="INSIDE" width="215.0" />
+        <Button fx:id="learnMoreButton" layoutX="182.0" layoutY="366.0" style="-fx-background-color: clear; -fx-text-fill: #ffff; -fx-padding: 8 20; -fx-border-radius: 50px; -fx-font-weight: bold;" text="LEARN MORE" />
+      <Label fx:id="welcomeLabel1" layoutX="75.0" layoutY="295.0" prefWidth="350" style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-alignment: center;" text="University Library System" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Bauhaus 93" size="12.0" />
+         </font>
+      </Label>
+    </Pane>
+     <Label layoutX="638.0" layoutY="92.0" style="-fx-font-size: 38; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="welcome">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Label>
+     <Label layoutX="592.0" layoutY="137.0" style="-fx-font-size: 16; -fx-text-fill: gray;" text="Login to your account to continue" />
+
+     <Label layoutX="550.0" layoutY="207.0" style="-fx-font-size: 13; -fx-text-fill: gray;" text="Student Number" />
+     <TextField fx:id="studentNumberField" layoutX="550.0" layoutY="232.0" prefHeight="36.0" prefWidth="292.0" promptText="Your Student Number" style="-fx-padding: 8; -fx-background-radius: 25px; -fx-border-radius: 25px;                           -fx-border-color: lightgray; -fx-background-color: white;" />
+
+     <Label layoutX="550.0" layoutY="286.0" style="-fx-font-size: 13; -fx-text-fill: gray;" text="Password" />
+     <PasswordField fx:id="passwordField" layoutX="550.0" layoutY="310.0" prefHeight="38.0" prefWidth="292.0" promptText="Your Password" style="-fx-padding: 8; -fx-background-radius: 25px; -fx-border-radius: 25px;                               -fx-border-color: lightgray; -fx-background-color: white;" />
+
+     <Button fx:id="signInButton" layoutX="746.0" layoutY="386.0" prefHeight="33.0" prefWidth="100.0" style="-fx-background-color: #00ce63; -fx-text-fill: white;                        -fx-background-radius: 25px; -fx-font-weight: bold;" text="SIGN IN" />
+
+</AnchorPane>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="student_help.StudentHelpController">
+    <!-- Fixed Top Bar -->
+    <AnchorPane prefHeight="41.0" prefWidth="900.0">
+        <children>
+            <Rectangle fill="#008743" height="41.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
+         <ImageView fitHeight="22.0" fitWidth="151.0" layoutX="14.0" layoutY="9.0">
+            <image>
+               <Image url="@../images/logo/olfu-logo-white.png" />
+            </image>
+         </ImageView>
+            <Button fx:id="dashboardButton" onAction="#handleDashboardButton" layoutX="677.0" layoutY="9.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="126.0" style="-fx-background-color: #00ce63; -fx-text-fill: white; -fx-background-radius: 25px; -fx-font-weight: bold;" text="Dashboard" textFill="WHITE">
+            <font>
+               <Font size="9.0" />
+            </font></Button>
+         <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="849.0" layoutY="9.0">
+            <image>
+               <Image url="@../images/icons/nav-user.png" />
+            </image>
+         </ImageView>
+        </children>
+    </AnchorPane>
+
+    <!-- Scrollable Content (with No Horizontal Scroll) -->
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="525.0" prefWidth="900.0">
+        <content>
+            <AnchorPane prefHeight="1080.0" prefWidth="901.0">
+                <children>
+                    <!-- Horizontal Gray Line -->
+                    <Line endX="888.0" endY="-1.220703125E-4" layoutX="4.0" layoutY="1043.0" startX="-5.333343505859375" startY="-2.44140625E-4" stroke="#c3c3c3" strokeWidth="1" />
+                     <Label layoutX="292.0" layoutY="1052.0" style="-fx-font-size: 12px; -fx-text-fill: gray;" text="© 2025 Our Lady of Fatima University. All Rights Reserved." textFill="#747373" />
+               <ImageView fitHeight="210.0" fitWidth="210.0" layoutX="347.0" layoutY="12.0">
+                  <image>
+                     <Image url="@help-and-support.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#008743" layoutX="289.0" layoutY="250.0" strokeType="OUTSIDE" text="How can we help you today?">
+                  <font>
+                     <Font name="Segoe UI Bold" size="25.0" />
+                  </font>
+               </Text>
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00ce63" height="38.0" layoutX="42.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
+               <Text fill="WHITE" layoutX="53.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FREQUENTLY ASKED QUESTIONS">
+                  <font>
+                     <Font name="Segoe UI Black" size="14.0" />
+                  </font>
+               </Text>
+               <Text fill="#008743" layoutX="64.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Borrowing &amp; Returning Books">
+                  <font>
+                     <Font name="Segoe UI Bold" size="17.0" />
+                  </font>
+               </Text>
+               <Text fill="#0ea356" layoutX="64.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How do I borrow a book?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="78.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Log in to the Digital Library Portal." />
+               <Text fill="#515050" layoutX="78.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Search for the book you want to borrow." />
+               <Text fill="#515050" layoutX="78.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Click the &quot;Borrow&quot; button for eBooks or &quot;Reserve&quot; " wrappingWidth="303.09503173828125" />
+               <Text fill="#0ea356" layoutX="64.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How do I borrow a book?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="78.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Loan period is 3 days, renewable if no reservations are placed." textAlignment="JUSTIFY" wrappingWidth="308.76434326171875" />
+               <Text fill="#0ea356" layoutX="64.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How do I return a book?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="79.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Return them to the designated library drop-off point before the due date to avoid penalties." textAlignment="JUSTIFY" wrappingWidth="308.76434326171875" />
+               <Text fill="#008743" layoutX="469.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reservations">
+                  <font>
+                     <Font name="Segoe UI Bold" size="17.0" />
+                  </font>
+               </Text>
+               <Text fill="#0ea356" layoutX="469.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How do I reserve a book?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="483.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Log in to the Digital Library Portal." />
+               <Text fill="#515050" layoutX="483.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Search for the book you need" />
+               <Text fill="#515050" layoutX="483.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Click &quot;Reserve&quot; and select a preferred pick-up date" wrappingWidth="303.09503173828125" />
+               <Text fill="#0ea356" layoutX="469.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How long does a reservation last?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="483.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Reservations are valid for 1 day." wrappingWidth="308.76434326171875" />
+               <Text fill="#008743" layoutX="473.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lost/Damaged Books">
+                  <font>
+                     <Font name="Segoe UI Bold" size="17.0" />
+                  </font>
+               </Text>
+               <Text fill="#0ea356" layoutX="473.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What happens if I lose a book?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="487.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     You must report the lost book to the library immediately." />
+               <Text fill="#515050" layoutX="487.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     You may be required to replace the book or pay a fine based on the book’s value." wrappingWidth="330.208984375" />
+               <Text fill="#0ea356" layoutX="473.0" layoutY="637.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How do I report a damaged book?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="487.0" layoutY="661.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Bring the damaged book to the library staff for evaluation." wrappingWidth="308.76434326171875" />
+               <Text fill="#0ea356" layoutX="477.0" layoutY="745.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How do I pay for a lost or damaged book?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="492.0" layoutY="770.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Payments can be made online through the Digital Library Portal or at the library counter." wrappingWidth="308.76434326171875" />
+               <Text fill="#515050" layoutX="488.0" layoutY="701.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     The extent of the damage will determine whether you need to pay a fine or replace the book." wrappingWidth="308.76434326171875" />
+               <Text fill="#515050" layoutX="494.0" layoutY="811.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     The fee will be calculated based on the book’s original price or repair cost." wrappingWidth="308.76434326171875" />
+               <Text fill="#008743" layoutX="61.0" layoutY="623.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fines &amp; Penalties">
+                  <font>
+                     <Font name="Segoe UI Bold" size="17.0" />
+                  </font>
+               </Text>
+               <Text fill="#0ea356" layoutX="61.0" layoutY="648.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How are overdue fines calculated?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="75.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Fines are charged per day after the due date." />
+               <Text fill="#515050" layoutX="75.0" layoutY="685.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     The rate is 20.00 per day for regular books and 25.00 per day for high-demand or reserved books." wrappingWidth="330.208984375" />
+               <Text fill="#0ea356" layoutX="61.0" layoutY="732.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How do I check my fines?">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#515050" layoutX="75.0" layoutY="756.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Log in to the Digital Library Portal." wrappingWidth="308.76434326171875" />
+               <Text fill="#515050" layoutX="76.0" layoutY="775.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     Navigate to the &quot;My Account&quot; section." wrappingWidth="308.76434326171875" />
+               <Text fill="#515050" layoutX="76.0" layoutY="792.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•     View any pending fines and make payments as needed." wrappingWidth="308.76434326171875" />
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00ce63" height="38.0" layoutX="48.0" layoutY="884.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="182.0" />
+               <Text fill="WHITE" layoutX="70.0" layoutY="908.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTACT SUPPORT">
+                  <font>
+                     <Font name="Segoe UI Black" size="14.0" />
+                  </font>
+               </Text>
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00ce63" height="38.0" layoutX="455.0" layoutY="883.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="182.0" />
+               <Text fill="WHITE" layoutX="477.0" layoutY="907.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VISIT THE LIBRARY">
+                  <font>
+                     <Font name="Segoe UI Black" size="14.0" />
+                  </font>
+               </Text>
+               <Text fill="#38793b" layoutX="53.0" layoutY="949.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email: [librarysupport@fatima.edu.ph]">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="11.0" />
+                  </font>
+               </Text>
+               <Text fill="#38793b" layoutX="52.0" layoutY="966.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: +63-XXX-XXX-XXXX">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="11.0" />
+                  </font>
+               </Text>
+               <Text fill="#38793b" layoutX="52.0" layoutY="984.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Desk Hours: Monday - Friday, 8:00 AM - 5:00 PM">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="11.0" />
+                  </font>
+               </Text>
+               <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="461.0" layoutY="940.0">
+                  <image>
+                     <Image url="@location-icon.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#38793b" layoutX="509.0" layoutY="954.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senior High School Library: SJB 3rd Floor College Library: SJB 4th Floor" wrappingWidth="232.44305419921875">
+                  <font>
+                     <Font name="Segoe UI Symbol" size="11.0" />
+                  </font>
+               </Text>
+
+                </children>
+            </AnchorPane>
+        </content>
+    </ScrollPane>
+</VBox>
