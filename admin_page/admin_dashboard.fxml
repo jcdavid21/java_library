@@ -9,6 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TableView?>
 
 <VBox prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminDashboardController">
    <!-- Fixed Top Bar -->
@@ -289,7 +290,7 @@
                </Text>
                
                <!-- Recent Borrowings List View will be populated via controller -->
-               <VBox fx:id="recentBorrowingsVBox" layoutX="240.0" layoutY="210.0" prefHeight="140.0" prefWidth="290.0" spacing="5.0" />
+               <TableView fx:id="recentBorrowingsTable" layoutX="240.0" layoutY="210.0" prefHeight="140.0" prefWidth="290.0" />
                
                <!-- Most Popular Books Section -->
                <Text fill="#008743" layoutX="565.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Popular Books">
@@ -298,7 +299,7 @@
                   </font>
                </Text>
                <Rectangle arcHeight="7.0" arcWidth="7.0" fill="WHITE" height="180.0" layoutX="565.0" layoutY="179.0" stroke="#bab6b6" strokeType="INSIDE" width="290.0" />
-               <VBox fx:id="popularBooksVBox" layoutX="580.0" layoutY="210.0" prefHeight="140.0" prefWidth="260.0" spacing="5.0" />
+               <TableView fx:id="popularBooksTable" layoutX="580.0" layoutY="210.0" prefHeight="140.0" prefWidth="260.0" />
                <Text fill="#008743" layoutX="580.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top Borrowed Titles">
                   <font>
                      <Font name="Segoe UI Bold" size="14.0" />
@@ -312,7 +313,7 @@
                   </font>
                </Text>
                <Rectangle arcHeight="7.0" arcWidth="7.0" fill="WHITE" height="180.0" layoutX="224.0" layoutY="400.0" stroke="#bab6b6" strokeType="INSIDE" width="318.0" />
-               <VBox fx:id="overdueBookVBox" layoutX="240.0" layoutY="430.0" prefHeight="140.0" prefWidth="290.0" spacing="5.0" />
+               <TableView fx:id="overdueBookTable" layoutX="240.0" layoutY="430.0" prefHeight="140.0" prefWidth="290.0" />
                <Text fill="#008743" layoutX="240.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Books Past Due Date">
                   <font>
                      <Font name="Segoe UI Bold" size="14.0" />
@@ -353,7 +354,7 @@
                   </font>
                </Text>
                <Rectangle arcHeight="7.0" arcWidth="7.0" fill="WHITE" height="150.0" layoutX="224.0" layoutY="620.0" stroke="#bab6b6" strokeType="INSIDE" width="630.0" />
-               <VBox fx:id="systemLogsVBox" layoutX="240.0" layoutY="650.0" prefHeight="110.0" prefWidth="600.0" spacing="5.0" />
+               <TableView fx:id="systemLogsTable" layoutX="240.0" layoutY="650.0" prefHeight="110.0" prefWidth="600.0" />
                <Text fill="#008743" layoutX="240.0" layoutY="640.0" strokeType="OUTSIDE" strokeWidth="0.0" text="System Logs">
                   <font>
                      <Font name="Segoe UI Bold" size="14.0" />

@@ -5,7 +5,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
+import javafx.scene.text.Font;
 import util.DatabaseConnector;
 
 import javafx.fxml.FXMLLoader;
@@ -18,108 +23,190 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import javafx.scene.image.ImageView;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
+import javafx.scene.layout.Region;
 
 public class BrowseByCategoryController implements Initializable {
 
     private String currentStudentId;
+    private String currentCategory = "All";
+    private List<String> categories = new ArrayList<>();
 
-    // Category buttons
+    // Category buttons container
     @FXML
-    private Button allBooksBtn;
-    @FXML
-    private Button thesesBtn;
-    @FXML
-    private Button journalsBtn;
-    @FXML
-    private Button referenceBtn;
-    @FXML
-    private Button newspaperBtn;
-    @FXML
-    private Button magazineBtn;
+    private FlowPane categoryButtonsContainer;
 
-    // Book display elements (8 books)
+    // Container for dynamically created book display cards
     @FXML
-    private Text book1Title, book2Title, book3Title, book4Title, book5Title, book6Title, book7Title, book8Title;
+    private FlowPane booksContainer;
+
     @FXML
-    private Text book1ISBN, book2ISBN, book3ISBN, book4ISBN, book5ISBN, book6ISBN, book7ISBN, book8ISBN;
-    @FXML
-    private Text book1Author, book2Author, book3Author, book4Author, book5Author, book6Author, book7Author, book8Author;
-    @FXML
-    private Text book1Publisher, book2Publisher, book3Publisher, book4Publisher, book5Publisher, book6Publisher,
-            book7Publisher, book8Publisher;
-    @FXML
-    private Button book1Button, book2Button, book3Button, book4Button, book5Button, book6Button, book7Button,
-            book8Button, homeButton;
+    private Button homeButton;
+
     @FXML
     private ImageView userProfileIcon;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Set default category button styles
-        styleSelectedButton(allBooksBtn);
+        // Configure the FlowPane for category buttons
+        setupCategoryButtonsContainer();
 
-        // Initialize UI components and load default books
+        // Configure the FlowPane for books display
+        setupBooksContainer();
+
+        // Load categories from database and create buttons
+        loadCategoriesFromDatabase();
+
+        // Load default books (All category)
         loadBooksByCategory("All");
 
         // Set up home button event handler
         homeButton.setOnAction(event -> navigateToHome(event));
+
+        // Setup profile icon click handler
+        if (userProfileIcon != null) {
+            userProfileIcon.setOnMouseClicked(event -> navigateToProfile(event));
+        }
+    }
+
+    private void setupCategoryButtonsContainer() {
+        if (categoryButtonsContainer != null) {
+            categoryButtonsContainer.setHgap(10); // Horizontal gap between buttons
+            categoryButtonsContainer.setVgap(10); // Vertical gap between rows
+            categoryButtonsContainer.setPadding(new Insets(5, 5, 5, 5));
+            categoryButtonsContainer.setPrefWrapLength(800); // Adjust based on your UI width
+        } else {
+            System.err.println("Category buttons container is null! Check your FXML file.");
+        }
+    }
+
+    private void setupBooksContainer() {
+        if (booksContainer != null) {
+            booksContainer.setHgap(20); // Match the horizontal spacing from reference
+            booksContainer.setVgap(20); // Match the vertical spacing from reference
+            booksContainer.setPadding(new Insets(10, 10, 10, 10));
+            booksContainer.setPrefWrapLength(950); // Adjust based on your UI width
+            booksContainer.setAlignment(Pos.CENTER_LEFT); // Align items to the left
+        } else {
+            System.err.println("Books container is null! Check your FXML file.");
+        }
+    }
+
+    private void loadCategoriesFromDatabase() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DatabaseConnector.getConnection();
+
+            // First, add the "All" category
+            categories.add("All");
+
+            // Query to get all categories from the Book_Categories table
+            String query = "SELECT DISTINCT Category_Name FROM Book_Categories ORDER BY Category_Name";
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String category = rs.getString("Category_Name");
+                categories.add(category);
+            }
+
+            // Create buttons for all categories
+            createCategoryButtons();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Database Error", "Failed to load categories: " + e.getMessage(), Alert.AlertType.ERROR);
+        } finally {
+            // Close resources but not the connection
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void createCategoryButtons() {
+        if (categoryButtonsContainer == null) {
+            System.err.println("Category buttons container is null!");
+            return;
+        }
+
+        // Clear existing buttons
+        categoryButtonsContainer.getChildren().clear();
+
+        // Create a button for each category
+        for (String category : categories) {
+            Button categoryBtn = new Button(category.toUpperCase());
+            categoryBtn.setPrefHeight(24.0);
+            categoryBtn.setPrefWidth(163.0);
+
+            // Set the default button style
+            String buttonStyle = "-fx-background-color: #00ce63; -fx-text-fill: white; -fx-background-radius: 3px; -fx-font-weight: bold;";
+            if (category.equals(currentCategory)) {
+                buttonStyle = "-fx-background-color: #38793b; -fx-text-fill: white; -fx-background-radius: 3px; -fx-font-weight: bold;";
+            }
+            categoryBtn.setStyle(buttonStyle);
+
+            // Set the font size
+            categoryBtn.setFont(new Font(11.0));
+
+            // Add event handler for button click
+            categoryBtn.setOnAction(event -> {
+                currentCategory = category;
+                updateCategoryButtonStyles();
+                loadBooksByCategory(category);
+            });
+
+            // Add button to the container
+            categoryButtonsContainer.getChildren().add(categoryBtn);
+        }
+    }
+
+    private void updateCategoryButtonStyles() {
+        // Update styles of all category buttons
+        for (Node node : categoryButtonsContainer.getChildren()) {
+            if (node instanceof Button) {
+                Button btn = (Button) node;
+                String category = btn.getText().toLowerCase();
+
+                if (category.equalsIgnoreCase(currentCategory)) {
+                    btn.setStyle(
+                            "-fx-background-color: #38793b; -fx-text-fill: white; -fx-background-radius: 3px; -fx-font-weight: bold;");
+                } else {
+                    btn.setStyle(
+                            "-fx-background-color: #00ce63; -fx-text-fill: white; -fx-background-radius: 3px; -fx-font-weight: bold;");
+                }
+            }
+        }
     }
 
     public void setCurrentStudentId(String studentId) {
         this.currentStudentId = studentId;
-    }
-
-    // Category button handlers
-    @FXML
-    private void handleAllBooks() {
-        resetCategoryButtonStyles();
-        styleSelectedButton(allBooksBtn);
-        loadBooksByCategory("All");
-    }
-
-    @FXML
-    private void handleThesesDissertations() {
-        resetCategoryButtonStyles();
-        styleSelectedButton(thesesBtn);
-        loadBooksByCategory("Theses & Dissertations");
-    }
-
-    @FXML
-    private void handleJournalsResearch() {
-        resetCategoryButtonStyles();
-        styleSelectedButton(journalsBtn);
-        loadBooksByCategory("Journals & Research");
-    }
-
-    @FXML
-    private void handleReferenceMaterials() {
-        resetCategoryButtonStyles();
-        styleSelectedButton(referenceBtn);
-        loadBooksByCategory("Reference Materials");
-    }
-
-    @FXML
-    private void handleNewspaper() {
-        resetCategoryButtonStyles();
-        styleSelectedButton(newspaperBtn);
-        loadBooksByCategory("Newspaper");
-    }
-
-    @FXML
-    private void handleMagazine() {
-        resetCategoryButtonStyles();
-        styleSelectedButton(magazineBtn);
-        loadBooksByCategory("Magazine");
     }
 
     @FXML
@@ -194,54 +281,40 @@ public class BrowseByCategoryController implements Initializable {
         }
     }
 
-    private void resetCategoryButtonStyles() {
-        String defaultStyle = "-fx-background-color: #00ce63; -fx-text-fill: white; -fx-background-radius: 3px; -fx-font-weight: bold;";
-        allBooksBtn.setStyle(defaultStyle);
-        thesesBtn.setStyle(defaultStyle);
-        journalsBtn.setStyle(defaultStyle);
-        referenceBtn.setStyle(defaultStyle);
-        newspaperBtn.setStyle(defaultStyle);
-        magazineBtn.setStyle(defaultStyle);
-    }
-
-    private void styleSelectedButton(Button button) {
-        button.setStyle(
-                "-fx-background-color: #38793b; -fx-text-fill: white; -fx-background-radius: 3px; -fx-font-weight: bold;");
-    }
-
     private void loadBooksByCategory(String category) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
+    
         try {
             conn = DatabaseConnector.getConnection();
-
+    
             String query;
             if (category.equals("All")) {
                 query = "SELECT b.Book_ID, b.ISBN, b.Title, b.Author, b.Category, " +
                         "b.Available_Copies, b.Reserved_Copies, b.Times_Borrowed " +
                         "FROM Books b " +
                         "WHERE b.Available_Copies > 0 OR b.Reserved_Copies > 0 " +
-                        "ORDER BY b.Times_Borrowed DESC LIMIT 8";
+                        "ORDER BY b.Times_Borrowed DESC";
                 stmt = conn.prepareStatement(query);
             } else {
                 query = "SELECT b.Book_ID, b.ISBN, b.Title, b.Author, b.Category, " +
                         "b.Available_Copies, b.Reserved_Copies, b.Times_Borrowed " +
                         "FROM Books b " +
-                        "WHERE b.Category = ? AND (b.Available_Copies > 0 OR b.Reserved_Copies > 0) " +
-                        "ORDER BY b.Times_Borrowed DESC LIMIT 8";
+                        "JOIN Book_Categories bc ON b.Category = bc.Category_Name " +
+                        "WHERE bc.Category_Name = ? AND (b.Available_Copies > 0 OR b.Reserved_Copies > 0) " +
+                        "ORDER BY b.Times_Borrowed DESC";
                 stmt = conn.prepareStatement(query);
                 stmt.setString(1, category);
             }
-
+    
             rs = stmt.executeQuery();
-
-            // Reset all book displays first
-            resetBookDisplays();
-
-            int bookCount = 0;
-            while (rs.next() && bookCount < 8) {
+    
+            // Clear existing book displays
+            booksContainer.getChildren().clear();
+    
+            // Create book cards for each book
+            while (rs.next()) {
                 String bookId = rs.getString("Book_ID");
                 String isbn = rs.getString("ISBN");
                 String title = rs.getString("Title");
@@ -250,60 +323,24 @@ public class BrowseByCategoryController implements Initializable {
                 int availableCopies = rs.getInt("Available_Copies");
                 int reservedCopies = rs.getInt("Reserved_Copies");
                 int timesBorrowed = rs.getInt("Times_Borrowed");
-
-                String publisherInfo = "Category: " + categoryName;
-
-                // Update UI based on book number
-                switch (bookCount) {
-                    case 0:
-                        updateBookDisplay(book1Title, book1ISBN, book1Author, book1Publisher,
-                                book1Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                    case 1:
-                        updateBookDisplay(book2Title, book2ISBN, book2Author, book2Publisher,
-                                book2Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                    case 2:
-                        updateBookDisplay(book3Title, book3ISBN, book3Author, book3Publisher,
-                                book3Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                    case 3:
-                        updateBookDisplay(book4Title, book4ISBN, book4Author, book4Publisher,
-                                book4Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                    case 4:
-                        updateBookDisplay(book5Title, book5ISBN, book5Author, book5Publisher,
-                                book5Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                    case 5:
-                        updateBookDisplay(book6Title, book6ISBN, book6Author, book6Publisher,
-                                book6Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                    case 6:
-                        updateBookDisplay(book7Title, book7ISBN, book7Author, book7Publisher,
-                                book7Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                    case 7:
-                        updateBookDisplay(book8Title, book8ISBN, book8Author, book8Publisher,
-                                book8Button, title, isbn, author, publisherInfo,
-                                availableCopies, reservedCopies, bookId, timesBorrowed);
-                        break;
-                }
-                bookCount++;
+    
+                // Create and add a book card to the container
+                VBox bookCard = createBookCard(bookId, isbn, title, author, categoryName, 
+                                              availableCopies, reservedCopies, timesBorrowed);
+                booksContainer.getChildren().add(bookCard);
             }
-
+    
+            // If no books were found, display a message
+            if (booksContainer.getChildren().isEmpty()) {
+                Text noBookMsg = new Text("No books available in this category.");
+                noBookMsg.setFont(new Font(16));
+                booksContainer.getChildren().add(noBookMsg);
+            }
+    
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Database Error", "Failed to load books: " + e.getMessage(), Alert.AlertType.ERROR);
         } finally {
-            // Close statement and resultset but not connection
             if (rs != null) {
                 try {
                     rs.close();
@@ -318,22 +355,64 @@ public class BrowseByCategoryController implements Initializable {
                     e.printStackTrace();
                 }
             }
-            // Don't close the connection as it's a singleton
         }
     }
 
-    private void updateBookDisplay(Text titleText, Text isbnText, Text authorText,
-            Text publisherText, Button actionButton,
-            String title, String isbn, String author, String publisherInfo,
-            int availableCopies, int reservedCopies, String bookId, int timesBorrowed) {
-        titleText.setText(title);
-        isbnText.setText("ISBN: " + isbn);
-        authorText.setText("By: " + author);
-        publisherText.setText(publisherInfo);
+    private VBox createBookCard(String bookId, String isbn, String title, String author,
+            String category, int availableCopies, int reservedCopies, int timesBorrowed) {
+        // Main container
+        VBox bookCard = new VBox(5);
+        bookCard.setPrefWidth(193.0);
+        bookCard.setPrefHeight(111.0);
+        bookCard.setPadding(new Insets(10));
+        bookCard.setStyle("-fx-background-color: WHITE; -fx-border-color: #c5bebe; -fx-border-radius: 15; " +
+                "-fx-background-radius: 15; -fx-border-width: 1.5;");
 
-        actionButton.setId("book-" + bookId);
+        // Book Title
+        Text titleText = new Text(title);
+        titleText.setFont(Font.font("Segoe UI Semibold", 13.0));
+        titleText.setWrappingWidth(170);
 
-        actionButton.setOnAction(event -> handleBookAction(bookId, title, availableCopies, reservedCopies));
+        // ISBN
+        Text isbnText = new Text(isbn);
+        isbnText.setFont(new Font(10.0));
+        isbnText.setFill(javafx.scene.paint.Color.valueOf("#727070"));
+
+        // Author
+        Text authorText = new Text(author);
+        authorText.setFont(new Font(10.0));
+        authorText.setFill(javafx.scene.paint.Color.valueOf("#727070"));
+
+        // Publisher/Edition (using category as the publisher for now)
+        Text publisherText = new Text(category + " | 1st Edition");
+        publisherText.setFont(new Font(10.0));
+        publisherText.setFill(javafx.scene.paint.Color.valueOf("#727070"));
+
+        // Borrowed times container
+        HBox borrowedTimesBox = new HBox(5);
+        borrowedTimesBox.setAlignment(Pos.CENTER_LEFT);
+
+        // Create ImageView for borrowed times icon
+        ImageView borrowedIcon = new ImageView();
+        borrowedIcon.setFitHeight(14.0);
+        borrowedIcon.setFitWidth(14.0);
+        // Set a placeholder or load the actual image
+        // borrowedIcon.setImage(new
+        // Image(getClass().getResource("../images/user_home/borrowed-times.png").toExternalForm()));
+
+        // Borrowed times text
+        Text borrowedTimesText = new Text("Borrowed " + timesBorrowed + " Times");
+        borrowedTimesText.setFont(new Font(9.0));
+        borrowedTimesText.setFill(javafx.scene.paint.Color.valueOf("#242424"));
+
+        borrowedTimesBox.getChildren().addAll(borrowedIcon, borrowedTimesText);
+
+        // Action Button
+        Button actionButton = new Button();
+        actionButton.setPrefHeight(17.0);
+        actionButton.setPrefWidth(174.0);
+        actionButton.setFont(new Font(8.0));
+        actionButton.setTextFill(javafx.scene.paint.Color.WHITE);
 
         if (availableCopies > 0) {
             actionButton.setText("BORROW / RESERVE");
@@ -344,10 +423,21 @@ public class BrowseByCategoryController implements Initializable {
             actionButton.setStyle(
                     "-fx-background-color: #727070; -fx-text-fill: white; -fx-background-radius: 3.5; -fx-font-weight: bold;");
         } else {
-            actionButton.setText("UNAVAILABLE");
+            actionButton.setText("BORROWED");
             actionButton.setStyle(
                     "-fx-background-color: #ff0000; -fx-text-fill: white; -fx-background-radius: 3.5; -fx-font-weight: bold;");
         }
+
+        // Set button action
+        actionButton.setOnAction(event -> handleBookAction(bookId, title, availableCopies, reservedCopies));
+
+        // Add a small spacing between elements
+        bookCard.setSpacing(2);
+
+        // Add all elements to the card
+        bookCard.getChildren().addAll(titleText, isbnText, authorText, publisherText, borrowedTimesBox, actionButton);
+
+        return bookCard;
     }
 
     private void handleBookAction(String bookId, String bookTitle, int availableCopies, int reservedCopies) {
@@ -462,7 +552,7 @@ public class BrowseByCategoryController implements Initializable {
 
                 showAlert("Success", "Book borrowed successfully! Due date: " + dueDate,
                         Alert.AlertType.INFORMATION);
-                loadBooksByCategory("All"); // Refresh the view
+                loadBooksByCategory(currentCategory); // Refresh the view with current category
             } catch (SQLException e) {
                 // Rollback transaction if an error occurs
                 if (conn != null) {
@@ -598,9 +688,9 @@ public class BrowseByCategoryController implements Initializable {
                 reserveStmt.setDate(7, java.sql.Date.valueOf(expirationDate));
                 reserveStmt.executeUpdate();
 
-                //INSERT INTO RESERVATION APPROVALS
+                // INSERT INTO RESERVATION APPROVALS
                 String insertApprovalQuery = "INSERT INTO Reservation_Approvals (Reservation_ID, Student_ID, Book_Title, Reservation_Date, Expiration_Date, Status)"
-                + " VALUES (?, ?, ?, ?, ?, 'Pending')";
+                        + " VALUES (?, ?, ?, ?, ?, 'Pending')";
                 PreparedStatement insertApprovalStmt = conn.prepareStatement(insertApprovalQuery);
                 insertApprovalStmt.setInt(1, newId);
                 insertApprovalStmt.setString(2, currentStudentId);
@@ -624,7 +714,7 @@ public class BrowseByCategoryController implements Initializable {
 
                 showAlert("Success", "Book reserved successfully! Wait for the approval until " + expirationDate,
                         Alert.AlertType.INFORMATION);
-                loadBooksByCategory("All"); // Refresh the view
+                loadBooksByCategory(currentCategory); // Refresh with current category
             } catch (SQLException e) {
                 // Rollback transaction if an error occurs
                 if (conn != null) {
@@ -772,31 +862,6 @@ public class BrowseByCategoryController implements Initializable {
                 }
             }
             // Don't close the connection
-        }
-    }
-
-    private void resetBookDisplays() {
-        Text[] titleTexts = { book1Title, book2Title, book3Title, book4Title, book5Title, book6Title, book7Title,
-                book8Title };
-        Text[] isbnTexts = { book1ISBN, book2ISBN, book3ISBN, book4ISBN, book5ISBN, book6ISBN, book7ISBN, book8ISBN };
-        Text[] authorTexts = { book1Author, book2Author, book3Author, book4Author, book5Author, book6Author,
-                book7Author, book8Author };
-        Text[] publisherTexts = { book1Publisher, book2Publisher, book3Publisher, book4Publisher, book5Publisher,
-                book6Publisher, book7Publisher, book8Publisher };
-        Button[] buttons = { book1Button, book2Button, book3Button, book4Button, book5Button, book6Button, book7Button,
-                book8Button };
-
-        for (int i = 0; i < 8; i++) {
-            titleTexts[i].setText("No book available");
-            isbnTexts[i].setText("");
-            authorTexts[i].setText("");
-            publisherTexts[i].setText("");
-            buttons[i].setText("UNAVAILABLE");
-            buttons[i].setStyle(
-                    "-fx-background-color: #727070; -fx-text-fill: white; -fx-background-radius: 3.5; -fx-font-weight: bold;");
-            buttons[i].setOnAction(event -> {
-                System.out.println("No action available for this slot");
-            });
         }
     }
 
