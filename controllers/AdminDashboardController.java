@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.*;
 import util.DatabaseConnector;
+import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -687,6 +688,16 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void navigateToBookCategories() {
         navigateToPage("admin_book_categories.fxml", "Book Categories");
+    }
+
+    @FXML
+    private void navigateToVisitLogs(ActionEvent event) {
+        navigateToPage("../library_visits/library_visits_page.fxml", "Library Visit Logs");
+    }
+
+    @FXML void showVisitLogsTable(ActionEvent event) {
+        // Implementation would show visit logs table
+        navigateToPage("../library_visits/visits_table.fxml", "Library Visit Logs Table");
     }
 
     @FXML

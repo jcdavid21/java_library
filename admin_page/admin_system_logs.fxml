@@ -210,7 +210,7 @@
                      <Image url="@../images/admin_dashboard/library-visit-green.png" />
                   </image>
                </ImageView>
-               <Text fill="#008743" layoutX="56.0" layoutY="659.0" onMouseClicked="#navigateToLibraryVisitLogs" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Visit Logs ">
+               <Text fill="#008743" layoutX="56.0" layoutY="659.0" onMouseClicked="#navigateToLibraryVisitLogs" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Logs ">
                   <font>
                      <Font name="Segoe UI Semibold" size="12.0" />
                   </font>

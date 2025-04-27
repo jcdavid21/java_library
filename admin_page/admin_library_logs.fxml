@@ -204,7 +204,7 @@
                   </font>
                </Text>
                
-               <Text fill="WHITE" layoutX="55.0" layoutY="658.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Visit Logs ">
+               <Text fill="WHITE" layoutX="55.0" layoutY="658.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Logs ">
                   <font>
                      <Font name="Segoe UI Semibold" size="12.0" />
                   </font>
@@ -257,7 +257,7 @@
                <!-- Main content area -->
                <AnchorPane layoutX="222.0" layoutY="14.0" prefHeight="792.0" prefWidth="646.0">
                   <children>
-                     <Label layoutX="14.0" layoutY="14.0" text="Library Visit Logs" textFill="#008743">
+                     <Label layoutX="14.0" layoutY="14.0" text="Library Logs" textFill="#008743">
                         <font>
                            <Font name="Segoe UI Bold" size="20.0" />
                         </font>

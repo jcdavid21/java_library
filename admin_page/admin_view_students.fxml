@@ -270,7 +270,7 @@
                         </VBox.margin>
                      </Text>
                      
-                     <Button mnemonicParsing="false" onAction="#navigateToLibraryVisitLogs" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT;" text="Library Visit Logs">
+                     <Button mnemonicParsing="false" onAction="#navigateToLibraryVisitLogs" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT;" text="Library Logs">
                         <graphic>
                            <ImageView fitHeight="20.0" fitWidth="20.0">
                               <image>

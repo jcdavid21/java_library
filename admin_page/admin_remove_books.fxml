@@ -215,13 +215,13 @@
                   </font>
                </Text>
                
-               <!-- Library Visit Logs -->
+               <!-- Library Logs -->
                <ImageView fitHeight="24.0" fitWidth="27.0" layoutX="17.0" layoutY="640.0">
                   <image>
                      <Image url="@../images/admin_dashboard/library-visit-green.png" />
                   </image>
                </ImageView>
-               <Text fill="#008743" layoutX="55.0" layoutY="657.0" onMouseClicked="#navigateToLibraryVisitLogs" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Visit Logs ">
+               <Text fill="#008743" layoutX="55.0" layoutY="657.0" onMouseClicked="#navigateToLibraryVisitLogs" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Logs ">
                   <font>
                      <Font name="Segoe UI Semibold" size="12.0" />
                   </font>

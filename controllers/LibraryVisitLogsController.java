@@ -254,7 +254,7 @@ public class LibraryVisitLogsController implements Initializable {
     
     @FXML
     private void navigateToPenaltiesAndFines() {
-        navigateToPage("admin_penalties_fines.fxml", "Penalties and Fines");
+        navigateToPage("admin_penalties_and_fines.fxml", "Penalties and Fines");
     }
     
     @FXML
