@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 19, 2025 at 02:46 PM
+-- Generation Time: May 01, 2025 at 04:17 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -44,10 +44,11 @@ CREATE TABLE `Admin_Accounts` (
 
 INSERT INTO `Admin_Accounts` (`Admin_ID`, `Password`, `Last_Name`, `First_Name`, `Username`, `Email`, `Role`, `Status`) VALUES
 (212345, '123', 'Johnson', 'Emily', 'ejohnson', 'ejohnson@library.edu', 'Librarian', 'Active'),
-(212348, '123', 'Jones', 'Michael', 'mjones', 'mjones@library.edu', 'Assistant', 'Inactive'),
+(212348, '123', 'Jones', 'Michael', 'mjones', 'mjones@library.edu', 'Assistant', 'Active'),
 (212349, '123', 'Miller', 'Jennifer', 'jmiller', 'jmiller@library.edu', 'Librarian', 'Active'),
 (232145, '123', 'Williams', 'James', 'jwilliams', 'jwilliams@library.edu', 'Assistant', 'Active'),
-(245671, '123', 'Brown', 'Patricia', 'pbrown', 'pbrown@library.edu', 'Librarian', 'Active');
+(245671, '123', 'Brown', 'Patricia', 'pbrown', 'pbrown@library.edu', 'Librarian', 'Inactive'),
+(365724, '123', 'mariano', 'jhyra', 'jhyra', 'jhyra@gmail.com', 'Librarian', 'Active');
 
 -- --------------------------------------------------------
 
@@ -75,16 +76,17 @@ CREATE TABLE `Books` (
 --
 
 INSERT INTO `Books` (`Book_ID`, `ISBN`, `Title`, `Author`, `Category`, `Total_Copies`, `Available_Copies`, `Reserved_Copies`, `Lost_Damaged_Copies`, `Added_Date`, `Last_Borrowed_Date`, `Times_Borrowed`) VALUES
-(1, '978-0134685991', 'Effective Java', 'Joshua Bloch', 'Computer Science', 5, 4, 0, 1, '2023-01-15', '2024-03-10', 13),
+(1, '9780134685992', 'Effective Java Book', 'Joshua Bloch', 'Computer Science', 5, 4, 0, 1, '2023-01-15', '2024-03-10', 13),
 (2, '978-0321356680', 'Clean Code', 'Robert C. Martin', 'Computer Science', 4, 2, 0, 2, '2023-02-20', '2024-04-05', 9),
 (3, '978-0262033848', 'Introduction to Algorithms', 'Cormen, Leiserson, Rivest', 'Computer Science', 3, 1, 1, 1, '2023-03-10', '2024-03-28', 5),
 (4, '978-0470464725', 'Calculus: Early Transcendentals', 'James Stewart', 'Mathematics', 6, 4, 0, 2, '2023-01-25', '2024-04-01', 9),
 (5, '978-0321973610', 'University Physics', 'Young and Freedman', 'Physics', 4, 6, 1, 1, '2023-02-15', '2024-03-15', 8),
 (6, '978-1429218157', 'Principles of Chemistry', 'Atkins and Jones', 'Chemistry', 3, 1, 0, 2, '2023-03-05', '2024-02-20', 4),
-(7, '978-1319017637', 'Campbell Biology', 'Urry et al.', 'Biology', 5, 2, 2, 1, '2023-01-30', '2024-03-25', 6),
-(8, '978-0143105428', 'To Kill a Mockingbird', 'Harper Lee', 'Literature', 7, 3, 2, 2, '2023-02-10', '2024-04-02', 16),
-(9, '978-0062315007', 'The Alchemist', 'Paulo Coelho', 'Literature', 4, 2, 1, 1, '2023-03-15', '2024-03-20', 10),
-(10, '978-0393059748', 'Guns, Germs, and Steel', 'Jared Diamond', 'History', 3, 1, 0, 2, '2023-01-20', '2024-02-28', 5);
+(7, '978-1319017637', 'Campbell Biology', 'Urry et al.', 'Biology', 5, 1, 3, 1, '2023-01-30', '2024-03-25', 6),
+(8, '978-0143105428', 'To Kill a Mockingbird', 'Harper Lee', 'Literature', 7, 2, 2, 2, '2023-02-10', '2024-04-02', 17),
+(9, '978-0062315007', 'The Alchemist', 'Paulo Coelho', 'Literature', 4, 3, 1, 1, '2023-03-15', '2024-03-20', 10),
+(10, '978-0393059748', 'Guns, Germs, and Steel', 'Jared Diamond', 'History', 3, 2, 0, 2, '2023-01-20', '2024-02-28', 5),
+(11, '2312421', 'Book1', 'Jc', 'Art', 5, 4, 0, 0, '2025-04-25', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,7 @@ INSERT INTO `Book_Categories` (`Category_ID`, `Category_Name`, `Total_Books`) VA
 (5, 'Biology', 9),
 (6, 'Literature', 20),
 (7, 'History', 14),
-(8, 'Art', 7),
+(8, 'Art', 8),
 (9, 'Economics', 11),
 (10, 'Psychology', 6);
 
@@ -141,17 +143,19 @@ INSERT INTO `Borrowed_Books` (`Borrow_ID`, `Student_ID`, `Student_Name`, `Book_I
 (1, '02185365777', 'Jc David', 1, 'Effective Java', '2024-03-01', '2024-03-15', '2024-03-14', 'Returned', 0.00),
 (2, '02185365123', 'Maria Garcia', 2, 'Clean Code', '2024-03-05', '2024-03-19', '2024-03-18', 'Returned', 0.00),
 (3, '02185365234', 'John Smith', 3, 'Introduction to Algorithms', '2024-03-10', '2024-03-24', NULL, 'Overdue', 5.50),
-(4, '02185365345', 'Emma Johnson', 4, 'Calculus: Early Transcendentals', '2024-03-15', '2024-03-29', NULL, 'Borrowed', 0.00),
+(4, '02185365345', 'Emma Johnson', 4, 'Calculus: Early Transcendentals', '2024-03-15', '2024-03-29', NULL, 'Overdue', 193.50),
 (5, '02185365456', 'Michael Brown', 5, 'University Physics', '2024-03-20', '2024-04-03', '2024-04-02', 'Returned', 0.00),
-(6, '02185365567', 'Sarah Wilson', 6, 'Principles of Chemistry', '2024-03-25', '2024-04-08', NULL, 'Borrowed', 0.00),
-(7, '02185365678', 'David Lee', 7, 'Campbell Biology', '2024-03-28', '2024-04-11', NULL, 'Borrowed', 0.00),
-(8, '02185365789', 'Jennifer Davis', 8, 'To Kill a Mockingbird', '2024-04-01', '2024-04-15', NULL, 'Borrowed', 0.00),
-(9, '02185365890', 'Robert Taylor', 9, 'The Alchemist', '2024-04-05', '2024-04-19', NULL, 'Borrowed', 0.00),
-(10, '02185365901', 'Lisa Martinez', 10, 'Guns, Germs, and Steel', '2024-04-10', '2024-04-24', NULL, 'Borrowed', 0.00),
+(6, '02185365567', 'Sarah Wilson', 6, 'Principles of Chemistry', '2024-03-25', '2024-04-08', NULL, 'Overdue', 188.50),
+(7, '02185365678', 'David Lee', 7, 'Campbell Biology', '2024-03-28', '2024-04-11', NULL, 'Overdue', 187.00),
+(8, '02185365789', 'Jennifer Davis', 8, 'To Kill a Mockingbird', '2024-04-01', '2024-04-15', NULL, 'Overdue', 185.00),
+(9, '02185365890', 'Robert Taylor', 9, 'The Alchemist', '2024-04-05', '2024-04-19', '2025-04-20', 'Returned', 183.00),
+(10, '02185365901', 'Lisa Martinez', 10, 'Guns, Germs, and Steel', '2024-04-10', '2024-04-24', '2025-04-20', 'Returned', 180.50),
 (13, '02185365777', 'Jc David', 2, 'Clean Code', '2025-04-19', '2025-05-03', '2025-04-19', 'Returned', NULL),
 (14, '02185365777', 'Jc David', 5, 'University Physics', '2025-04-19', '2025-05-03', '2025-04-19', 'Borrowed', NULL),
 (15, '02185365777', 'Jc David', 8, 'To Kill a Mockingbird', '2025-04-19', '2025-05-03', '2025-04-19', 'Returned', NULL),
-(16, '02185365777', 'Jc David', 1, 'Effective Java', '2025-04-19', '2025-05-03', '2025-04-19', 'Returned', NULL);
+(16, '02185365777', 'Jc David', 1, 'Effective Java', '2025-04-19', '2025-05-03', '2025-04-19', 'Returned', NULL),
+(17, '02185365777', 'Juan Carlo David', 8, 'To Kill a Mockingbird', '2025-04-25', '2025-05-09', NULL, 'Borrowed', NULL),
+(18, '02185365777', 'Juan Carlo David', 11, 'Book1', '2025-04-25', '2025-05-09', NULL, 'Borrowed', NULL);
 
 -- --------------------------------------------------------
 
@@ -172,7 +176,7 @@ CREATE TABLE `Borrowing_History` (
 --
 
 INSERT INTO `Borrowing_History` (`Borrow_history_id`, `Student_ID`, `Student_Name`, `Total_Borrowed_Books`, `Total_Reserved_Books`) VALUES
-(1, '02185365777', 'Jc David', 5, 3),
+(1, '02185365777', 'Jc David', 7, 3),
 (2, '02185365123', 'Maria Garcia', 3, 1),
 (3, '02185365234', 'John Smith', 7, 1),
 (4, '02185365345', 'Emma Johnson', 4, 1),
@@ -296,7 +300,8 @@ INSERT INTO `Penalties_Fines` (`Penalty_ID`, `Student_ID`, `Student_Name`, `Book
 (5, '02185365567', 'Sarah Wilson', 'Principles of Chemistry', 'Missing pages', 10.00, '2024-04-15', NULL, 'Unpaid'),
 (6, '02185365777', 'Jc David', 'University Physics', 'Missing pages', 10.00, '2025-05-03', NULL, 'Unpaid'),
 (7, '02185365777', 'Jc David', 'University Physics', 'Missing pages', 10.00, '2025-05-03', NULL, 'Unpaid'),
-(8, '02185365777', 'Jc David', 'University Physics', 'Water damage', 20.00, '2025-05-03', NULL, 'Unpaid');
+(8, '02185365777', 'Jc David', 'University Physics', 'Water damage', 20.00, '2025-05-03', NULL, 'Unpaid'),
+(9, '02185365234', 'John Smith', 'Introduction to Algorithms', 'Overdue', 11.50, '2025-04-20', NULL, 'Paid');
 
 -- --------------------------------------------------------
 
@@ -321,7 +326,7 @@ INSERT INTO `Reservation_Approvals` (`Reservation_ID`, `Student_ID`, `Book_Title
 (1, '02185365777', 'Effective Java', '2024-04-01', '2024-04-08', 'Pending'),
 (2, '02185365123', 'Introduction to Algorithms', '2024-04-05', '2024-04-12', 'Approved'),
 (3, '02185365234', 'University Physics', '2024-04-10', '2024-04-17', 'Pending'),
-(4, '02185365345', 'Campbell Biology', '2024-03-28', '2024-04-04', 'Rejected'),
+(4, '02185365345', 'Campbell Biology', '2024-03-28', '2024-04-04', 'Approved'),
 (5, '02185365456', 'The Alchemist', '2024-04-02', '2024-04-09', 'Approved'),
 (7, '02185365777', 'Campbell Biology', '2025-04-19', '2025-04-26', 'Pending');
 
@@ -378,7 +383,7 @@ INSERT INTO `Students` (`Student_ID`, `Student_Name`, `password`) VALUES
 ('02185365456', 'Michael Brown', 'mikebrown'),
 ('02185365567', 'Sarah Wilson', 'sarahw'),
 ('02185365678', 'David Lee', 'dlee123'),
-('02185365777', 'Jc David', '123'),
+('02185365777', 'Juan Carlo David', '123'),
 ('02185365789', 'Jennifer Davis', 'jenn2024'),
 ('02185365890', 'Robert Taylor', 'rtaylor'),
 ('02185365901', 'Lisa Martinez', 'lisa123');
@@ -419,7 +424,64 @@ INSERT INTO `System_Logs` (`Log_ID`, `Timestamp`, `User_Type`, `User_ID`, `Actio
 (18, '2025-04-19 15:42:19', 'Student', '02185365777', 'Returned book ID: 2'),
 (19, '2025-04-19 15:53:52', 'Student', '02185365777', 'Returned book ID: 5'),
 (20, '2025-04-19 16:01:00', 'Student', '02185365777', 'Returned book ID: 1'),
-(21, '2025-04-19 16:01:31', 'Student', '02185365777', 'Returned book ID: 8');
+(21, '2025-04-19 16:01:31', 'Student', '02185365777', 'Returned book ID: 8'),
+(22, '2025-04-20 00:20:51', 'Admin', '212348', 'Updated book category ID 8 from \'Art\' to \'Art\''),
+(23, '2025-04-20 00:20:54', 'Admin', '212348', 'Updated book category ID 8 from \'Art\' to \'Art\''),
+(24, '2025-04-20 00:23:16', 'Admin', '212348', 'Updated book category ID 8 from \'Art\' to \'Tite\''),
+(25, '2025-04-20 00:23:35', 'Admin', '212348', 'Updated book category ID 8 from \'Tite\' to \'Art\''),
+(26, '2025-04-20 00:23:48', 'Admin', '212348', 'Added new book category: tite'),
+(27, '2025-04-20 00:23:52', 'Admin', '212348', 'Deleted book category: tite'),
+(28, '2025-04-20 00:38:37', 'Admin', '212348', 'Added new book category: Tite'),
+(29, '2025-04-20 00:42:52', 'Admin', '212348', 'Added new book: asd'),
+(30, '2025-04-20 00:43:25', 'Admin', '212348', 'Added new book: asda'),
+(31, '2025-04-20 01:08:29', 'Admin', '212348', 'Admin removed book ID: 11'),
+(32, '2025-04-20 01:08:32', 'Admin', '212348', 'Admin removed book ID: 12'),
+(33, '2025-04-20 01:08:45', 'Admin', '212348', 'Deleted book category: Tite'),
+(34, '2025-04-20 10:28:55', 'Admin', '212348', 'Processed book return: Book ID 10 for student 02185365901'),
+(35, '2025-04-20 11:14:21', 'Admin', '212348', 'Updated reservation status for ID: 4 to Reserved'),
+(36, '2025-04-20 11:14:26', 'Admin', '212348', 'Updated reservation status for ID: 4 to Expired'),
+(37, '2025-04-20 12:21:07', 'Admin', '212348', 'Processed book return: Book ID 9 for student 02185365890'),
+(38, '2025-04-20 12:23:50', 'Admin', '212348', 'Updated student details for ID: 02185365777'),
+(39, '2025-04-20 14:14:49', 'Admin', '212348', 'Admin added new penalty for student 02185365234 for Overdue'),
+(40, '2025-04-20 14:14:59', 'Admin', '212348', 'Admin marked penalty ID 9 as paid for student 02185365234'),
+(41, '2025-04-20 14:31:34', 'Admin', '212348', 'Admin logged out'),
+(42, '2025-04-20 14:44:38', 'Admin', '212348', 'Updated admin account: pbrown'),
+(43, '2025-04-20 14:44:44', 'Admin', '212348', 'Updated admin account: mjones'),
+(44, '2025-04-20 14:48:27', 'Admin', '212348', 'Created new admin account: jhyra'),
+(45, '2025-04-20 14:49:19', 'Admin', '212348', 'Created new admin account: asd'),
+(46, '2025-04-20 14:49:38', 'Admin', '212348', 'Deleted admin account: asd'),
+(47, '2025-04-20 15:10:39', 'Admin', '212348', 'Viewed system logs'),
+(48, '2025-04-20 15:11:16', 'Admin', '212348', 'Viewed system logs'),
+(49, '2025-04-20 15:11:24', 'Admin', '212348', 'Admin logged out'),
+(50, '2025-04-25 21:37:14', 'Admin', '212345', 'Added new book: Book1'),
+(51, '2025-04-27 12:32:05', 'Admin', '212348', 'Viewed system logs'),
+(52, '2025-04-27 14:44:26', 'Student', '02185365777', 'Library Visit: Study/Research'),
+(53, '2025-04-27 14:45:56', 'Employee', '0212348', 'Library Visit: Research');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Visit_Logs`
+--
+
+CREATE TABLE `Visit_Logs` (
+  `Visit_ID` int(11) NOT NULL,
+  `Student_ID` varchar(100) DEFAULT NULL,
+  `Student_Name` varchar(100) DEFAULT NULL,
+  `Employee_ID` varchar(100) DEFAULT NULL,
+  `Employee_Name` varchar(100) DEFAULT NULL,
+  `Visit_Date` datetime DEFAULT current_timestamp(),
+  `Purpose` varchar(255) DEFAULT NULL,
+  `Visitor_Type` enum('Student','Employee') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Visit_Logs`
+--
+
+INSERT INTO `Visit_Logs` (`Visit_ID`, `Student_ID`, `Student_Name`, `Employee_ID`, `Employee_Name`, `Visit_Date`, `Purpose`, `Visitor_Type`) VALUES
+(1, '02185365777', 'Juan Carlo David', NULL, NULL, '2025-04-27 14:44:26', 'Study/Research', 'Student'),
+(2, NULL, NULL, '0212348', 'Michael Jones', '2025-04-27 14:45:56', 'Research', 'Employee');
 
 --
 -- Indexes for dumped tables
@@ -514,14 +576,27 @@ ALTER TABLE `System_Logs`
   ADD PRIMARY KEY (`Log_ID`);
 
 --
+-- Indexes for table `Visit_Logs`
+--
+ALTER TABLE `Visit_Logs`
+  ADD PRIMARY KEY (`Visit_ID`),
+  ADD KEY `Student_ID` (`Student_ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `Book_Categories`
+--
+ALTER TABLE `Book_Categories`
+  MODIFY `Category_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `Borrowed_Books`
 --
 ALTER TABLE `Borrowed_Books`
-  MODIFY `Borrow_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Borrow_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `Borrowing_History`
@@ -539,13 +614,19 @@ ALTER TABLE `Lost_Damaged_Reports`
 -- AUTO_INCREMENT for table `Penalties_Fines`
 --
 ALTER TABLE `Penalties_Fines`
-  MODIFY `Penalty_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Penalty_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `System_Logs`
 --
 ALTER TABLE `System_Logs`
-  MODIFY `Log_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Log_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `Visit_Logs`
+--
+ALTER TABLE `Visit_Logs`
+  MODIFY `Visit_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -603,6 +684,12 @@ ALTER TABLE `Reservation_Approvals`
 ALTER TABLE `Reserved_Books`
   ADD CONSTRAINT `reserved_books_ibfk_1` FOREIGN KEY (`Book_ID`) REFERENCES `Books` (`Book_ID`),
   ADD CONSTRAINT `reserved_books_ibfk_2` FOREIGN KEY (`Student_ID`) REFERENCES `Students` (`Student_ID`);
+
+--
+-- Constraints for table `Visit_Logs`
+--
+ALTER TABLE `Visit_Logs`
+  ADD CONSTRAINT `visit_logs_student_fk` FOREIGN KEY (`Student_ID`) REFERENCES `Students` (`Student_ID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
