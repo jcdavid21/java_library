@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import user_account.BorrowingHistoryEntry;
 import util.DatabaseConnector;
 
 import java.io.IOException;
@@ -160,7 +159,7 @@ public class BorrowingHistoryController implements Initializable {
         }
     }
     
-    // Navigation methods
+    // Navigation methods to match FXML's event handlers
     @FXML
     private void navigateToHome(ActionEvent event) {
         navigateToPage("../student_teacher_account/student_teacher_home_page.fxml", event);
@@ -175,10 +174,17 @@ public class BorrowingHistoryController implements Initializable {
     private void navigateToDashboard(MouseEvent event) {
         navigateToPage("account_dashboard.fxml", event);
     }
-    
+
     @FXML
-    private void navigateToMyBorrowedBooks(MouseEvent event) {
+    private void navigateToBorrowedBooks(MouseEvent event) {
         navigateToPage("account_my_borrowed_books.fxml", event);
+    }
+
+    @FXML
+    private void navigateToBorrowingHistory(MouseEvent event) {
+        // Already on this page, no navigation needed
+        // Could refresh the data if needed
+        loadBorrowingHistory();
     }
 
     @FXML
@@ -211,7 +217,7 @@ public class BorrowingHistoryController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Generic method to navigate to another page
      * 

@@ -96,11 +96,12 @@
                             <Font name="Segoe UI Semibold" size="12.0" />
                         </font>
                     </Text>
-                    <Text fill="#008743" layoutX="64.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Penalties &amp; Fines">
-                        <font>
-                            <Font name="Segoe UI Semibold" size="12.0" />
-                        </font>
-                    </Text>
+                    <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="19.0" layoutY="347.0" onMouseClicked="#navigateToReportIssue">
+                        <image>
+                            <Image url="@../images/user_account/report-an-issue.png" />
+                        </image>
+                    </ImageView>
+
                     <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="18.0" layoutY="285.0" onMouseClicked="#navigateToBorrowingHistory">
                         <image>
                             <Image url="@../images/user_account/user-history-green.png" />
@@ -116,11 +117,7 @@
                             <Image url="@../images/user_account/report-an-issue-green.png" />
                         </image>
                     </ImageView>
-                    <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="13.0" layoutY="376.0" onMouseClicked="#navigateToPenaltiesAndFines">
-                        <image>
-                            <Image url="@../images/user_account/admin-penalties-fines-green.png" />
-                        </image>
-                    </ImageView>
+                    
                     <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="18.0" layoutY="432.0" onMouseClicked="#handleLogout">
                         <image>
                             <Image url="@../images/user_account/user-logout-green.png" />

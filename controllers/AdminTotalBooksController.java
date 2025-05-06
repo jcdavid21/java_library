@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -231,6 +232,158 @@ public class AdminTotalBooksController implements Initializable {
         // Future implementation: Export to Excel file
     }
 
+    // Navigation methods
+    @FXML
+    private void navigateToDashboard() {
+        navigateToPage("admin_dashboard.fxml", "Dashboard");
+    }
+
+    @FXML
+    private void navigateToTotalBooks() {
+        navigateToPage("admin_total_books_available.fxml", "Total Books");
+    }
+
+    @FXML
+    private void navigateToBookCategories() {
+        navigateToPage("admin_book_categories.fxml", "Book Categories");
+    }
+
+    @FXML
+    private void navigateToVisitLogs(ActionEvent event) {
+        navigateToPage("../library_visits/library_visits_page.fxml", "Library Visit Logs");
+    }
+
+    @FXML void showVisitLogsTable(ActionEvent event) {
+        // Implementation would show visit logs table
+        navigateToPage("../library_visits/visits_table.fxml", "Library Visit Logs Table");
+    }
+
+    @FXML
+    private void navigateToAddNewBooks() {
+        navigateToPage("admin_add_new_books.fxml", "Add New Books");
+    }
+
+    @FXML
+    private void navigateToUpdateBookDetails() {
+        navigateToPage("admin_update_book_details.fxml", "Update Book Details");
+    }
+
+    @FXML
+    private void navigateToRemoveBooks() {
+        navigateToPage("admin_remove_books.fxml", "Remove Books");
+    }
+
+    @FXML
+    private void navigateToBorrowedBooks() {
+        navigateToPage("admin_borrowed_books.fxml", "Borrowed Books");
+    }
+
+    @FXML
+    private void navigateToReservedBooks() {
+        navigateToPage("admin_reserved_books.fxml", "Reserved Books");
+    }
+
+    @FXML
+    private void navigateToMostBorrowedBooks() {
+        navigateToPage("admin_most_borrowed_books.fxml", "Most Borrowed Books");
+    }
+
+    @FXML
+    private void navigateToViewStudents() {
+        navigateToPage("admin_view_students.fxml", "View Students");
+    }
+
+    @FXML
+    private void navigateToBorrowingHistory() {
+        navigateToPage("admin_borrowing_history.fxml", "Borrowing History");
+    }
+
+    @FXML
+    private void navigateToPenaltiesFines() {
+        navigateToPage("admin_penalties_and_fines.fxml", "Penalties & Fines");
+    }
+
+    @FXML
+    private void navigateToLostDamagedReports() {
+        navigateToPage("admin_lost_damaged_reports.fxml", "Lost & Damaged Reports");
+    }
+
+    @FXML
+    private void navigateToManageAdminAccounts() {
+        navigateToPage("admin_manage_admin_accounts.fxml", "Manage Admin Accounts");
+    }
+
+    @FXML
+    private void navigateToSystemLogs() {
+        navigateToPage("admin_system_logs.fxml", "System Logs");
+    }
+
+    @FXML
+    private void navigateToLibraryVisitLogs() {
+        navigateToPage("admin_library_logs.fxml", "Library Visit Logs");
+    }
+
+    @FXML
+    private void logout() {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+
+            // Load the login view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/librarian_sign_up_page/signup_page.fxml"));
+            Parent root = loader.load();
+
+            // Create the scene and set it on the stage
+            Scene scene = new Scene(root);
+            currentStage.setScene(scene);
+            currentStage.setTitle("Library Management System - Login");
+            currentStage.show();
+
+        } catch (IOException e) {
+            System.err.println("Error loading login view: " + e.getMessage());
+        }
+    }
+
+    private void navigateToPage(String fxmlFile, String title) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+
+            // Load the selected view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin_page/" + fxmlFile));
+            Parent root = loader.load();
+
+            // Try to pass admin ID to the controller if it has the method
+            try {
+                Object controller = loader.getController();
+                if (controller != null) {
+                    try {
+                        controller.getClass().getMethod("setAdminData", int.class).invoke(controller, adminId);
+                    } catch (NoSuchMethodException e) {
+                        // Try alternate method name
+                        try {
+                            controller.getClass().getMethod("setAdminId", int.class).invoke(controller, adminId);
+                        } catch (NoSuchMethodException ex) {
+                            System.out.println("Controller doesn't have setAdminData or setAdminId method");
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("Could not pass admin ID to controller: " + e.getMessage());
+            }
+
+            // Create the scene and set it on the stage
+            Scene scene = new Scene(root);
+            currentStage.setScene(scene);
+            currentStage.setTitle("Library Management System - " + title);
+            currentStage.show();
+
+        } catch (Exception e) {
+            System.err.println("Error navigating to " + fxmlFile + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void navigateToAddBook() {
         navigateToPage("admin_add_new_books.fxml", "Add New Books");
@@ -268,52 +421,6 @@ public class AdminTotalBooksController implements Initializable {
             }
         } else {
             showAlert(Alert.AlertType.WARNING, "Selection Required", "Please select a book to update.");
-        }
-    }
-
-    @FXML
-    private void navigateToDashboard() {
-        navigateToPage("admin_dashboard.fxml", "Dashboard");
-    }
-
-    private void navigateToPage(String fxmlFile, String title) {
-        try {
-            // Get the current stage
-            Stage currentStage = (Stage) booksTable.getScene().getWindow();
-
-            // Load the selected view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin_page/" + fxmlFile));
-            Parent root = loader.load();
-
-            // Try to pass admin ID to the controller if it has the method
-            try {
-                Object controller = loader.getController();
-                if (controller != null) {
-                    try {
-                        controller.getClass().getMethod("setAdminData", int.class).invoke(controller, adminId);
-                    } catch (NoSuchMethodException e) {
-                        // Try alternate method name
-                        try {
-                            controller.getClass().getMethod("setAdminId", int.class).invoke(controller, adminId);
-                        } catch (NoSuchMethodException ex) {
-                            System.out.println("Controller doesn't have setAdminData or setAdminId method");
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                System.err.println("Could not pass admin ID to controller: " + e.getMessage());
-            }
-
-            // Create the scene and set it on the stage
-            Scene scene = new Scene(root);
-            currentStage.setScene(scene);
-            currentStage.setTitle("Library Management System - " + title);
-            currentStage.show();
-
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Navigation Error",
-                    "Error navigating to " + fxmlFile + ": " + e.getMessage());
-            e.printStackTrace();
         }
     }
 

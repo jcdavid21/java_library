@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import util.DatabaseConnector;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import student_help.StudentHelpController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -250,21 +251,27 @@ public class StudentDashboardController implements Initializable {
         }
     }
 
+    // Modified navigateToHelpSupport method for original class
     private void navigateToHelpSupport() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../student_help/student_help.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/student_help/student_help.fxml"));
             Parent root = loader.load();
-
+    
+            // Get the controller and pass the student ID
+            StudentHelpController controller = loader.getController();
+            controller.setCurrentStudentId(currentStudentId);
+    
             Stage stage = (Stage) helpSupportButton.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
+    
         } catch (IOException e) {
             showAlert("Navigation Error", "Could not navigate to Help & Support: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
     private void loadMostBorrowedBooks() {
         Connection conn = null;

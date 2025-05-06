@@ -124,6 +124,11 @@
                             <Image url="@../images/user_account/admin-penalties-fines-green.png" />
                         </image>
                     </ImageView>
+                    <Text fill="#008743" layoutX="68.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out">
+                        <font>
+                            <Font name="Segoe UI Semibold" size="12.0" />
+                        </font>
+                    </Text>
                     <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="18.0" layoutY="432.0" onMouseClicked="#handleLogout">
                         <image>
                             <Image url="@../images/user_account/user-logout-green.png" />
